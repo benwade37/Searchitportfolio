@@ -1,0 +1,146 @@
+[
+  {
+    "model": "portfolio.category",
+    "pk": 1,
+    "fields": { "name": "coding" }
+  },
+  {
+    "model": "portfolio.category",
+    "pk": 2,
+    "fields": { "name": "advertising" }
+  },
+  {
+    "model": "portfolio.category",
+    "pk": 3,
+    "fields": { "name": "design" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 1,
+    "fields": { "name": "python" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 2,
+    "fields": { "name": "django" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 3,
+    "fields": { "name": "javascript" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 4,
+    "fields": { "name": "react" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 5,
+    "fields": { "name": "digital-ads" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 6,
+    "fields": { "name": "social-media" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 7,
+    "fields": { "name": "branding" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 8,
+    "fields": { "name": "api" }
+  },
+  {
+    "model": "portfolio.tag",
+    "pk": 9,
+    "fields": { "name": "ux" }
+  },
+  {
+    "model": "portfolio.portfolioitem",
+    "pk": 1,
+    "fields": {
+      "title": "E-Commerce Platform",
+      "description": "A full-featured e-commerce platform built with Django and React. Features include product search, cart management, Stripe payment integration, and an admin dashboard for inventory management. Designed with performance and scalability in mind, serving thousands of concurrent users.",
+      "category": 1,
+      "tags": [1, 2, 4],
+      "image": "",
+      "url": "https://github.com",
+      "date_created": "2024-01-15",
+      "featured": true
+    }
+  },
+  {
+    "model": "portfolio.portfolioitem",
+    "pk": 2,
+    "fields": {
+      "title": "Summer Brand Campaign",
+      "description": "A multi-channel advertising campaign for a consumer lifestyle brand. The campaign spanned Instagram, Facebook, Google Display, and YouTube, achieving a 3.2x return on ad spend. Created compelling visual storytelling that resonated with a 18–34 demographic.",
+      "category": 2,
+      "tags": [5, 6, 7],
+      "image": "",
+      "url": "",
+      "date_created": "2024-02-20",
+      "featured": true
+    }
+  },
+  {
+    "model": "portfolio.portfolioitem",
+    "pk": 3,
+    "fields": {
+      "title": "REST API for Task Management",
+      "description": "A RESTful API built with Django REST Framework that powers a cross-platform task management application. Includes JWT authentication, real-time notifications via WebSockets, and comprehensive API documentation generated with Swagger.",
+      "category": 1,
+      "tags": [1, 2, 8],
+      "image": "",
+      "url": "",
+      "date_created": "2024-03-05",
+      "featured": false
+    }
+  },
+  {
+    "model": "portfolio.portfolioitem",
+    "pk": 4,
+    "fields": {
+      "title": "Product Launch Ad Series",
+      "description": "Produced a series of high-impact digital ads for a tech startup product launch. Developed messaging strategy, visual concepts, and copy for display, social, and video formats. The launch exceeded pre-registration targets by 180%.",
+      "category": 2,
+      "tags": [5, 7],
+      "image": "",
+      "url": "",
+      "date_created": "2024-03-18",
+      "featured": false
+    }
+  },
+  {
+    "model": "portfolio.portfolioitem",
+    "pk": 5,
+    "fields": {
+      "title": "Interactive Data Dashboard",
+      "description": "A JavaScript-powered analytics dashboard built with React and D3.js. Provides real-time KPI visualisations, customisable chart widgets, CSV export, and role-based access control. Integrated with a Python backend via a GraphQL API.",
+      "category": 1,
+      "tags": [3, 4, 8],
+      "image": "",
+      "url": "",
+      "date_created": "2024-04-10",
+      "featured": false
+    }
+  },
+  {
+    "model": "portfolio.portfolioitem",
+    "pk": 6,
+    "fields": {
+      "title": "Brand Identity Redesign",
+      "description": "Complete visual identity overhaul for an established creative agency. Delivered logo system, colour palette, typography guidelines, and an extensive brand book. The new identity was rolled out across digital and print assets.",
+      "category": 3,
+      "tags": [7, 9],
+      "image": "",
+      "url": "",
+      "date_created": "2024-05-01",
+      "featured": true
+    }
+  }
+]
