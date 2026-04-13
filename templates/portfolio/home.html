@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if query %}Results for "{{ query }}" — {% endif %}Searchit Portfolio
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Discover My Work</h1>
+    <p class="hero-sub">Search through coding projects, advertising campaigns, and design work.</p>
+    <form class="hero-search" method="get" action="{% url 'portfolio:home' %}">
+      <div class="search-box">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search by title, description, or tag…"
+          value="{{ query }}"
+          autofocus
+          aria-label="Search portfolio"
+        />
+        <button type="submit">&#128269; Search</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="filters">
+    <div class="filter-group">
+      <span class="filter-label">Filter by category:</span>
+      <a href="{% url 'portfolio:home' %}{% if query %}?q={{ query }}{% endif %}" class="filter-chip {% if not category_filter %}active{% endif %}">All</a>
+      {% for cat in categories %}
+        <a href="?{% if query %}q={{ query }}&{% endif %}category={{ cat.name }}" class="filter-chip {% if category_filter == cat.name %}active{% endif %}">{{ cat }}</a>
+      {% endfor %}
+    </div>
+    {% if tags %}
+    <div class="filter-group">
+      <span class="filter-label">Popular tags:</span>
+      {% for tag in tags %}
+        <a href="?{% if query %}q={{ query }}&{% endif %}tag={{ tag.name }}" class="tag-chip {% if tag_filter == tag.name %}active{% endif %}">#{{ tag.name }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </section>
+
+  {% if query or category_filter or tag_filter %}
+    <p class="result-count">
+      {% if total_results == 0 %}
+        No results found
+        {% if query %}for &ldquo;<strong>{{ query }}</strong>&rdquo;{% endif %}.
+        <a href="{% url 'portfolio:home' %}">Clear search</a>
+      {% elif total_results == 1 %}
+        1 project found{% if query %} for &ldquo;<strong>{{ query }}</strong>&rdquo;{% endif %}.
+      {% else %}
+        {{ total_results }} projects found{% if query %} for &ldquo;<strong>{{ query }}</strong>&rdquo;{% endif %}.
+      {% endif %}
+    </p>
+  {% endif %}
+
+  {% if items %}
+    <div class="grid">
+      {% for item in items %}
+        <article class="card">
+          {% if item.image %}
+            <a href="{{ item.get_absolute_url }}">
+              <img class="card-img" src="{{ item.image.url }}" alt="{{ item.title }}" />
+            </a>
+          {% else %}
+            <a href="{{ item.get_absolute_url }}">
+              <div class="card-img card-placeholder">
+                <span>{{ item.category|default:"Project" }}</span>
+              </div>
+            </a>
+          {% endif %}
+          <div class="card-body">
+            {% if item.category %}
+              <span class="badge badge-{{ item.category.name }}">{{ item.category }}</span>
+            {% endif %}
+            <h2 class="card-title">
+              <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+            </h2>
+            <p class="card-desc">{{ item.description|truncatewords:25 }}</p>
+            <div class="card-tags">
+              {% for tag in item.tags.all %}
+                <a href="?tag={{ tag.name }}" class="tag-chip">#{{ tag.name }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No portfolio items yet. Check back soon!</p>
+    </div>
+  {% endif %}
+{% endblock %}

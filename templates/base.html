@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Searchit Portfolio{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="{% url 'portfolio:home' %}">Searchit<span>Portfolio</span></a>
+      <form class="header-search" method="get" action="{% url 'portfolio:home' %}">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search projects…"
+          value="{{ request.GET.q|default:'' }}"
+          aria-label="Search"
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2024 Searchit Portfolio &mdash; Showcasing ad &amp; coding work.</p>
+    </div>
+  </footer>
+</body>
+</html>

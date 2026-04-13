@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ item.title }} — Searchit Portfolio{% endblock %}
+
+{% block content %}
+  <nav class="breadcrumb">
+    <a href="{% url 'portfolio:home' %}">Home</a>
+    <span>&rsaquo;</span>
+    {% if item.category %}
+      <a href="{% url 'portfolio:home' %}?category={{ item.category.name }}">{{ item.category }}</a>
+      <span>&rsaquo;</span>
+    {% endif %}
+    <span class="current">{{ item.title }}</span>
+  </nav>
+
+  <article class="detail">
+    <header class="detail-header">
+      {% if item.category %}
+        <span class="badge badge-{{ item.category.name }}">{{ item.category }}</span>
+      {% endif %}
+      <h1 class="detail-title">{{ item.title }}</h1>
+      <p class="detail-date">Added {{ item.date_created|date:"F j, Y" }}</p>
+    </header>
+
+    {% if item.image %}
+      <img class="detail-img" src="{{ item.image.url }}" alt="{{ item.title }}" />
+    {% endif %}
+
+    <div class="detail-body">
+      <p>{{ item.description }}</p>
+    </div>
+
+    {% if item.tags.all %}
+      <div class="detail-tags">
+        <strong>Tags:</strong>
+        {% for tag in item.tags.all %}
+          <a href="{% url 'portfolio:home' %}?tag={{ tag.name }}" class="tag-chip">#{{ tag.name }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if item.url %}
+      <div class="detail-link">
+        <a class="btn" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">View Project &rarr;</a>
+      </div>
+    {% endif %}
+  </article>
+
+  {% if related %}
+    <section class="related">
+      <h2>Related Projects</h2>
+      <div class="grid">
+        {% for r in related %}
+          <article class="card">
+            {% if r.image %}
+              <a href="{{ r.get_absolute_url }}">
+                <img class="card-img" src="{{ r.image.url }}" alt="{{ r.title }}" />
+              </a>
+            {% else %}
+              <a href="{{ r.get_absolute_url }}">
+                <div class="card-img card-placeholder">
+                  <span>{{ r.category|default:"Project" }}</span>
+                </div>
+              </a>
+            {% endif %}
+            <div class="card-body">
+              {% if r.category %}
+                <span class="badge badge-{{ r.category.name }}">{{ r.category }}</span>
+              {% endif %}
+              <h3 class="card-title">
+                <a href="{{ r.get_absolute_url }}">{{ r.title }}</a>
+              </h3>
+              <p class="card-desc">{{ r.description|truncatewords:15 }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}
