@@ -1,0 +1,42 @@
+<h1>My Work</h1>
+
+<div class="filters">
+  {% for media in media_types %}
+    <button data-filter="{{ media.name|lower }}">{{ media.name }}</button>
+  {% endfor %}
+</div>
+
+<div class="grid">
+  {% for project in projects %}
+    <div class="card"
+         data-media="{% for m in project.media_types.all %}{{ m.name|lower }} {% endfor %}">
+
+      <img src="{{ project.cover_image.url }}">
+      <h3>{{ project.title }}</h3>
+
+      {% if project.pdf %}
+        <a href="{{ project.pdf.url }}" target="_blank">View PDF</a>
+      {% endif %}
+
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+    const buttons = document.querySelectorAll('.filters button');
+    const cards = document.querySelectorAll('.card');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+    
+        cards.forEach(card => {
+          if (card.dataset.media.includes(filter)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+    </script>
