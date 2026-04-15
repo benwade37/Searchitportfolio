@@ -1,0 +1,13 @@
+.filter-btn {
+  padding: 8px 14px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.filter-btn.active {
+  background: black;
+  color: white;
+}

@@ -1,15 +1,28 @@
 <h1>My Work</h1>
 
 <div class="filters">
+
+  <h3>Media</h3>
   {% for media in media_types %}
-    <button data-filter="{{ media.name|lower }}">{{ media.name }}</button>
+    <button class="filter-btn" data-type="media" data-value="{{ media.name|lower }}">
+      {{ media.name }}
+    </button>
   {% endfor %}
+
+  <h3>Client</h3>
+  {% for client in client_types %}
+    <button class="filter-btn" data-type="client" data-value="{{ client.name|lower }}">
+      {{ client.name }}
+    </button>
+  {% endfor %}
+
 </div>
 
 <div class="grid">
   {% for project in projects %}
     <div class="card"
-         data-media="{% for m in project.media_types.all %}{{ m.name|lower }} {% endfor %}">
+         data-media="{% for m in project.media_types.all %}{{ m.name|lower }} {% endfor %}"
+         data-client="{% for c in project.client_types.all %}{{ c.name|lower }} {% endfor %}">
 
       <img src="{{ project.cover_image.url }}">
       <h3>{{ project.title }}</h3>
@@ -23,20 +36,49 @@
 </div>
 
 <script>
-    const buttons = document.querySelectorAll('.filters button');
-    const cards = document.querySelectorAll('.card');
-    
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
-    
-        cards.forEach(card => {
-          if (card.dataset.media.includes(filter)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-    </script>
+const buttons = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.card');
+
+let activeFilters = {
+  media: [],
+  client: []
+};
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const type = button.dataset.type;
+    const value = button.dataset.value;
+
+    button.classList.toggle('active');
+
+    if (activeFilters[type].includes(value)) {
+      activeFilters[type] = activeFilters[type].filter(v => v !== value);
+    } else {
+      activeFilters[type].push(value);
+    }
+
+    filterProjects();
+  });
+});
+
+function filterProjects() {
+  cards.forEach(card => {
+    const media = card.dataset.media || "";
+    const client = card.dataset.client || "";
+
+    const mediaMatch =
+      activeFilters.media.length === 0 ||
+      activeFilters.media.some(f => media.includes(f));
+
+    const clientMatch =
+      activeFilters.client.length === 0 ||
+      activeFilters.client.some(f => client.includes(f));
+
+    if (mediaMatch && clientMatch) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
