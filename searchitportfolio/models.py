@@ -28,3 +28,11 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    
+class ProjectAsset(models.Model):
+    project = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='assets')
+    image = models.ImageField(upload_to='projects/images/', blank=True, null=True)
+    pdf = models.FileField(upload_to='projects/pdfs/', blank=True, null=True)
+
+    def __str__(self):
+        return f"Asset for {self.project.title}"
