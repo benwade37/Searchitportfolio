@@ -1,0 +1,26 @@
+{% load static %}
+
+<h1>{{ project.title }}</h1>
+
+<p>{{ project.description }}</p>
+
+<div class="gallery">
+  {% for asset in project.assets.all %}
+
+    {% if asset.asset_type == "image" %}
+      <img src="{{ asset.file.url }}" style="width:400%; max-width:600px;">
+
+    {% elif asset.asset_type == "video" %}
+      <video controls width="600">
+        <source src="{{ asset.file.url }}">
+      </video>
+
+    {% elif asset.asset_type == "audio" %}
+      <audio controls>
+        <source src="{{ asset.file.url }}">
+      </audio>
+
+    {% endif %}
+
+  {% endfor %}
+</div>

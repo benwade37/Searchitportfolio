@@ -1,104 +1,156 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Ben Wade Portfolio</title>
 
   <link rel="stylesheet" href="{% static 'assets2/css/style.css' %}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-<h1>My Work</h1>
+  <h1>Welcome to the portfolio of Benjamin Wade</h1>
 
-<div class="filters">
+  <!-- FILTERS -->
+  <div class="filters">
 
-  <h3>Media</h3>
-  {% for media in media_types %}
-    <button class="filter-btn" data-type="media" data-value="{{ media.name|lower }}">
-      {{ media.name }}
-    </button>
-  {% endfor %}
+    <h3>Media</h3>
 
-  <h3>Client Type</h3>
-  {% for client in client_types %}
-    <button class="filter-btn" data-type="client" data-value="{{ client.name|lower }}">
-      {{ client.name }}
-    </button>
-  {% endfor %}
+    {% for media in media_types %}
+      <button class="filter-btn"
+              data-type="media"
+              data-value="{{ media.name|lower }}">
+        {{ media.name }}
+      </button>
+    {% endfor %}
 
-</div>
+    <h3>Client Type</h3>
 
-<div class="grid">
-  {% for project in projects %}
-    <div class="card"
-         data-media="{% for m in project.media_types.all %}{{ m.name|lower }} {% endfor %}"
-         data-client="{% for c in project.client_types.all %}{{ c.name|lower }} {% endfor %}">
+    {% for client in client_types %}
+      <button class="filter-btn"
+              data-type="client"
+              data-value="{{ client.name|lower }}">
+        {{ client.name }}
+      </button>
+    {% endfor %}
 
-      {% with project.assets.first as asset %}
-        {% if asset and asset.image %}
-          <img src="{{ asset.image.url }}">
-        {% endif %}
-      {% endwith %}
+  </div>
 
-      <h3>{{ project.title }}</h3>
+  <!-- PROJECT GRID -->
+  <div class="grid">
 
-    </div>
-  {% endfor %}
-</div>
+    {% for project in projects %}
 
-<script>
-const buttons = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.card');
+      <div class="card"
+           data-media="{% for m in project.media_types.all %}{{ m.name|lower }}{% if not forloop.last %},{% endif %}{% endfor %}"
+           data-client="{% for c in project.client_types.all %}{{ c.name|lower }}{% if not forloop.last %},{% endif %}{% endfor %}">
 
-let activeFilters = {
-  media: [],
-  client: []
-};
+        <a href="{% url 'project_detail' project.id %}" class="card-link">
 
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    const type = button.dataset.type;
-    const value = button.dataset.value;
+          {% for asset in project.assets.all %}
+            {% if asset.asset_type == "image" %}
+              <img src="{{ asset.file.url }}" alt="{{ project.title }}">
+            {% endif %}
+          {% endfor %}
 
-    button.classList.toggle('active');
+          <div class="card-content">
+            <h3>{{ project.title }}</h3>
 
-    if (activeFilters[type].includes(value)) {
-      activeFilters[type] = activeFilters[type].filter(v => v !== value);
-    } else {
-      activeFilters[type].push(value);
+            {% if project.description %}
+              <p>{{ project.description }}</p>
+            {% endif %}
+          </div>
+
+        </a>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+  <!-- FILTER SCRIPT -->
+  <script>
+
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+
+    let activeFilters = {
+      media: [],
+      client: []
+    };
+
+    buttons.forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        const type = button.dataset.type;
+        const value = button.dataset.value;
+
+        button.classList.toggle('active');
+
+        if (activeFilters[type].includes(value)) {
+
+          activeFilters[type] =
+            activeFilters[type].filter(v => v !== value);
+
+        } else {
+
+          activeFilters[type].push(value);
+
+        }
+
+        filterProjects();
+
+      });
+
+    });
+
+    function filterProjects() {
+
+      cards.forEach(card => {
+
+        const media =
+          (card.dataset.media || "").split(',');
+
+        const client =
+          (card.dataset.client || "").split(',');
+
+        const mediaMatch =
+
+          activeFilters.media.length === 0 ||
+
+          activeFilters.media.some(filter =>
+            media.includes(filter)
+          );
+
+        const clientMatch =
+
+          activeFilters.client.length === 0 ||
+
+          activeFilters.client.some(filter =>
+            client.includes(filter)
+          );
+
+        if (mediaMatch && clientMatch) {
+
+          card.style.display = '';
+
+        } else {
+
+          card.style.display = 'none';
+
+        }
+
+      });
+
     }
 
-    filterProjects();
-  });
-});
-
-function filterProjects() {
-  cards.forEach(card => {
-    const media = card.dataset.media || "";
-    const client = card.dataset.client || "";
-
-    const mediaMatch =
-      activeFilters.media.length === 0 ||
-      activeFilters.media.some(f => media.includes(f));
-
-    const clientMatch =
-      activeFilters.client.length === 0 ||
-      activeFilters.client.some(f => client.includes(f));
-
-    if (mediaMatch && clientMatch) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-</script>
+  </script>
 
 </body>
 </html>
