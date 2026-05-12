@@ -1,6 +1,12 @@
 {% load static %}
 
+<head>
+<link rel="stylesheet" href="{% static 'assets2/css/style.css' %}">
+</head>
+
 <h1>{{ project.title }}</h1>
+
+<a href="{% url 'home' %}" class="back-button">Back</a>
 
 <p>{{ project.description }}</p>
 
@@ -8,10 +14,10 @@
   {% for asset in project.assets.all %}
 
     {% if asset.asset_type == "image" %}
-      <img src="{{ asset.file.url }}" style="width:400%; max-width:600px;">
+      <img src="{{ asset.file.url }}" style="width:400%; max-width:1200px;">
 
     {% elif asset.asset_type == "video" %}
-      <video controls width="600">
+      <video controls width="1000">
         <source src="{{ asset.file.url }}">
       </video>
 

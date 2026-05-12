@@ -2,80 +2,56 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ben Wade Portfolio</title>
-
+  <title>Benjamin Wade Portfolio</title>
   <link rel="stylesheet" href="{% static 'assets2/css/style.css' %}">
 </head>
-
 <body>
 
   <h1>Welcome to the portfolio of Benjamin Wade</h1>
 
   <!-- FILTERS -->
   <div class="filters">
-
     <h3>Media</h3>
-
     {% for media in media_types %}
-      <button class="filter-btn"
-              data-type="media"
-              data-value="{{ media.name|lower }}">
+      <button class="filter-btn" data-type="media" data-value="{{ media.name|lower }}">
         {{ media.name }}
       </button>
     {% endfor %}
 
     <h3>Client Type</h3>
-
     {% for client in client_types %}
-      <button class="filter-btn"
-              data-type="client"
-              data-value="{{ client.name|lower }}">
+      <button class="filter-btn" data-type="client" data-value="{{ client.name|lower }}">
         {{ client.name }}
       </button>
     {% endfor %}
-
   </div>
 
   <!-- PROJECT GRID -->
   <div class="grid">
-
     {% for project in projects %}
-
       <div class="card"
            data-media="{% for m in project.media_types.all %}{{ m.name|lower }}{% if not forloop.last %},{% endif %}{% endfor %}"
            data-client="{% for c in project.client_types.all %}{{ c.name|lower }}{% if not forloop.last %},{% endif %}{% endfor %}">
 
         <a href="{% url 'project_detail' project.id %}" class="card-link">
-
-          {% for asset in project.assets.all %}
-            {% if asset.asset_type == "image" %}
-              <img src="{{ asset.file.url }}" alt="{{ project.title }}">
-            {% endif %}
-          {% endfor %}
-
+          {% if project.first_image %}
+            <img src="{{ project.first_image.file.url }}" alt="{{ project.title }}">
+          {% else %}
+            <img src="{% static 'assets2/images/placeholder.jpg' %}" alt="Placeholder">
+          {% endif %}
           <div class="card-content">
             <h3>{{ project.title }}</h3>
-
-            {% if project.description %}
-              <p>{{ project.description }}</p>
-            {% endif %}
           </div>
-
         </a>
-
       </div>
-
     {% endfor %}
-
   </div>
 
   <!-- FILTER SCRIPT -->
   <script>
-
     const buttons = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
 
@@ -85,71 +61,33 @@
     };
 
     buttons.forEach(button => {
-
       button.addEventListener('click', () => {
-
         const type = button.dataset.type;
         const value = button.dataset.value;
 
         button.classList.toggle('active');
 
         if (activeFilters[type].includes(value)) {
-
-          activeFilters[type] =
-            activeFilters[type].filter(v => v !== value);
-
+          activeFilters[type] = activeFilters[type].filter(v => v !== value);
         } else {
-
           activeFilters[type].push(value);
-
         }
 
-        filterProjects();
+        cards.forEach(card => {
+          const media = card.dataset.media.split(',');
+          const client = card.dataset.client.split(',');
 
+          const mediaMatch = activeFilters.media.length === 0 || activeFilters.media.some(filter => media.includes(filter));
+          const clientMatch = activeFilters.client.length === 0 || activeFilters.client.some(filter => client.includes(filter));
+
+          if (mediaMatch && clientMatch) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       });
-
     });
-
-    function filterProjects() {
-
-      cards.forEach(card => {
-
-        const media =
-          (card.dataset.media || "").split(',');
-
-        const client =
-          (card.dataset.client || "").split(',');
-
-        const mediaMatch =
-
-          activeFilters.media.length === 0 ||
-
-          activeFilters.media.some(filter =>
-            media.includes(filter)
-          );
-
-        const clientMatch =
-
-          activeFilters.client.length === 0 ||
-
-          activeFilters.client.some(filter =>
-            client.includes(filter)
-          );
-
-        if (mediaMatch && clientMatch) {
-
-          card.style.display = '';
-
-        } else {
-
-          card.style.display = 'none';
-
-        }
-
-      });
-
-    }
-
   </script>
 
 </body>
