@@ -124,4 +124,54 @@
   .back-button:hover {
     background-color: #0056b3; /* Darker blue on hover */
   }
-  
+
+/* Media query for medium screens (tablets, 768px and up) */
+@media (max-width: 1024px) {
+  .card {
+    flex: 1 1 calc(33.333% - 20px); /* Adjust width for 3 cards per row */
+    max-width: calc(33.333% - 20px);
+  }
+}
+
+/* Media query for small screens (mobile, 768px and below) */
+@media (max-width: 768px) {
+/* Media query for small screens (mobile, 768px and below) */
+@media (max-width: 768px) {
+  .grid {
+    gap: 10px; /* Reduce spacing between cards */
+  }
+
+  .card {
+    flex: 1 1 100%; /* Make each card take up the full width */
+    max-width: 100%; /* Ensure the card doesn't exceed the container width */
+  }
+
+  .card img {
+    height: auto; /* Adjust image height to fit the content */
+  }
+}
+/* Media query for extra small screens (mobile, 480px and below) */
+@media (max-width: 480px) {
+  .card {
+    flex: 1 1 100%; /* Stack cards vertically */
+    max-width: 100%;
+  }
+
+  .card img {
+    height: 100px; /* Adjust image height for extra small screens */
+  }
+
+  h1 {
+    font-size: 24px; /* Reduce heading size */
+    text-align: center;
+  }
+
+  .filters {
+    text-align: center; /* Center filters on small screens */
+  }
+
+  .filter-btn {
+    margin: 5px; /* Add spacing between filter buttons */
+    padding: 8px 12px; /* Adjust button size */
+  }
+}
