@@ -15,7 +15,7 @@
   border-radius: 8px;
   overflow: hidden; /* Hide overflowing content */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: auto; /* Set a fixed height for all cards */
+  height: 300px; /* Set a fixed height for all cards */
   display: flex;
   flex-direction: column; /* Ensure content stacks vertically */
   justify-content: space-between; /* Distribute content evenly */
@@ -23,8 +23,9 @@
 
 .card img {
     width: 100%;
-    height: auto;
-    display:cover;
+    height: 250px;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    object-position: center; /* Center the image within the card */
   }
 
   .filters {
@@ -133,9 +134,7 @@
   }
 }
 
-/* Media query for small screens (mobile, 768px and below) */
-@media (max-width: 768px) {
-/* Media query for small screens (mobile, 768px and below) */
+
 @media (max-width: 768px) {
   .grid {
     gap: 10px; /* Reduce spacing between cards */
@@ -147,9 +146,11 @@
   }
 
   .card img {
-    height: auto; /* Adjust image height to fit the content */
+      height: auto; /* Allow the image to use its original height */
+      object-fit: unset; /* Remove cropping behavior */
+    }  
   }
-}
+
 /* Media query for extra small screens (mobile, 480px and below) */
 @media (max-width: 480px) {
   .card {
@@ -158,7 +159,8 @@
   }
 
   .card img {
-    height: 100px; /* Adjust image height for extra small screens */
+    height: auto; /* Allow the image to use its original height */
+    object-fit: unset; /* Remove cropping behavior */
   }
 
   h1 {
