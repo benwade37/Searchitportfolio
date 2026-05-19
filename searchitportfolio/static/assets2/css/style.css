@@ -84,30 +84,43 @@
     transform: translateY(-4px);
   }
 
-  .card-link {
+.card-link {
     display: block;
   }
 
-  .gallery {
+.gallery {
     display: flex;
-    flex-wrap: wrap; /* Allows images to wrap to the next row */
-    gap: 20px; /* Space between images */
-    justify-content: center; /* Center the images horizontally */
-  }
-  
-  .gallery img {
-    width: 100%; /* Make images responsive */
-    max-width: 400px; /* Set a maximum width for large images */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Optional: Add rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better aesthetics */
-    transition: transform 0.3s ease; /* Add a hover effect */
-  }
-  
-  .gallery img:hover {
-    transform: scale(1.05); /* Slightly enlarge the image on hover */
-  }
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
 
+.project-image,
+.project-video {
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 12px;
+}
+
+.project-audio {
+    width: 100%;
+    max-width: 500px;
+}
+
+.pdf-link {
+    display: inline-block;
+    padding: 12px 18px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.pdf-link:hover {
+    opacity: 0.8;
+}
+  
   .back-button {
     display: inline-block;
     padding: 10px 20px;

@@ -1,32 +1,68 @@
 {% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<link rel="stylesheet" href="{% static 'assets2/css/style.css' %}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ project.title }}</title>
+
+  <link rel="stylesheet" href="{% static 'assets2/css/style.css' %}">
 </head>
 
-<h1>{{ project.title }}</h1>
+<body>
 
-<a href="{% url 'home' %}" class="back-button">Back</a>
+  <a href="{% url 'home' %}" class="back-button">
+    ← Back
+  </a>
 
-<p>{{ project.description }}</p>
+  <h1>{{ project.title }}</h1>
 
-<div class="gallery">
-  {% for asset in project.assets.all %}
+  <p>{{ project.description }}</p>
 
-    {% if asset.asset_type == "image" %}
-      <img src="{{ asset.file.url }}" style="width:400%; max-width:1200px;">
+  <div class="gallery">
 
-    {% elif asset.asset_type == "video" %}
-      <video controls width="1000">
-        <source src="{{ asset.file.url }}">
-      </video>
+    {% for asset in project.assets.all %}
+  
+      <!-- IMAGE -->
+      {% if asset.asset_type == "image" %}
+  
+        <img src="{{ asset.file.url }}"
+             alt="{{ asset.caption }}"
+             class="project-image">
+  
+      <!-- VIDEO -->
+      {% elif asset.asset_type == "video" %}
+  
+        <video controls playsinline class="project-video">
+          <source src="{{ asset.file.url }}">
+          Your browser does not support video.
+        </video>
+  
+      <!-- AUDIO -->
+      {% elif asset.asset_type == "audio" %}
+  
+        <audio controls class="project-audio">
+          <source src="{{ asset.file.url }}">
+          Your browser does not support audio.
+        </audio>
+  
+      <!-- PDF -->
+      {% elif asset.asset_type == "pdf" %}
+  
+        <a href="{{ asset.file.url }}"
+           target="_blank"
+           class="pdf-link">
+          View PDF
+        </a>
+  
+      {% endif %}
+  
+    {% endfor %}
+  
+  </div>
 
-    {% elif asset.asset_type == "audio" %}
-      <audio controls>
-        <source src="{{ asset.file.url }}">
-      </audio>
-
-    {% endif %}
-
-  {% endfor %}
-</div>
+</body>
+</html>

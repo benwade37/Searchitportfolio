@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class MediaType(models.Model):
@@ -16,7 +17,6 @@ class ClientType(models.Model):
 
 
 class Project(models.Model):
-
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
@@ -39,12 +39,12 @@ class ProjectAsset(models.Model):
     ]
 
     project = models.ForeignKey(
-        Project,
+        'Project',
         on_delete=models.CASCADE,
         related_name='assets'
     )
 
-    file = models.FileField(upload_to='projects/assets/')
+    file = CloudinaryField(resource_type='auto')
 
     asset_type = models.CharField(
         max_length=10,
@@ -57,8 +57,6 @@ class ProjectAsset(models.Model):
         max_length=255,
         blank=True
     )
-
-    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.asset_type} for {self.project.title}"

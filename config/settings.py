@@ -13,12 +13,19 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
+
+# File upload settings
+DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50 MB
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -27,7 +34,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-p1_%#n94u&5rcq9_rdvi!id^ji0$$riale8u17r0@fkk(i3544'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['searchitportfolio-a80afa0f6b57.herokuapp.com','127.0.0.1']
 
@@ -40,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.staticfiles',
     'searchitportfolio',
 ]
@@ -98,6 +107,20 @@ if DATABASE_URL:
         ssl_require=True
     )
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dezh8szkv',
+    'API_KEY': '586663623448427',
+    'API_SECRET': 'h7gu3K5FAvH-yJc9RvmAEq7tDU4',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+cloudinary.config(
+    cloud_name='dezh8szkv',
+    api_key='586663623448427',
+    api_secret='h7gu3K5FAvH-yJc9RvmAEq7tDU4'
+)
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -132,7 +155,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Additional static files directory
 ]
