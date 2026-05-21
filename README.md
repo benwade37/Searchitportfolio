@@ -1,2 +1,2 @@
 # Searchitportfolio
-A search based portfolio showcasing ad and coding work
+    A search based portfolio showcasing ad and coding work.
