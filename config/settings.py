@@ -21,8 +21,8 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
+# MEDIA_URL = '/media/' 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 
 # File upload settings
 DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50 MB
@@ -113,7 +113,14 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'h7gu3K5FAvH-yJc9RvmAEq7tDU4',
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 cloudinary.config(
     cloud_name='dezh8szkv',
