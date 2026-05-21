@@ -108,10 +108,15 @@ if DATABASE_URL:
     )
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dezh8szkv',
-    'API_KEY': '586663623448427',
-    'API_SECRET': 'h7gu3K5FAvH-yJc9RvmAEq7tDU4',
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
+cloudinary.config(
+    cloud_name='CLOUDINARY_STORAGE',
+    api_key='CLOUDINARY_API_KEY',
+    api_secret='CLOUDINARY_API_SECRET'
+)
 
 STORAGES = {
     "default": {
@@ -121,12 +126,6 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
-cloudinary.config(
-    cloud_name='dezh8szkv',
-    api_key='586663623448427',
-    api_secret='h7gu3K5FAvH-yJc9RvmAEq7tDU4'
-)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -163,10 +162,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Additional static files directory
+    BASE_DIR / 'static',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
