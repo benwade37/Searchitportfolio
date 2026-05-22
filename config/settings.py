@@ -34,9 +34,9 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50 MB
 SECRET_KEY = 'django-insecure-p1_%#n94u&5rcq9_rdvi!id^ji0$$riale8u17r0@fkk(i3544'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['searchitportfolio-a80afa0f6b57.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['searchitportfolio.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'cloudinary',
     'django.contrib.staticfiles',
     'searchitportfolio',
