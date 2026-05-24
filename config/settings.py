@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure-p1_%#n94u&5rcq9_rdvi!id^ji0$$riale8u17r0@fkk(i3544
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['searchitportfolio.herokuapp.com','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['searchitportfolio-a80afa0f6b57.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
