@@ -38,6 +38,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['searchitportfolio-a80afa0f6b57.herokuapp.com','localhost','127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://searchitportfolio-a80afa0f6b57.herokuapp.com",
+]
 
 # Application definition
 
