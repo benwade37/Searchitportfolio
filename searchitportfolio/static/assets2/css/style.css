@@ -100,8 +100,14 @@
 .project-image,
 .project-video {
     width: 100%;
-    max-width: 1200px;
-    border-radius: 12px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-image:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 .project-audio {
