@@ -34,7 +34,7 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50 MB
 SECRET_KEY = 'django-insecure-p1_%#n94u&5rcq9_rdvi!id^ji0$$riale8u17r0@fkk(i3544'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['searchitportfolio-a80afa0f6b57.herokuapp.com','localhost','127.0.0.1']
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django-cloudinary-storage',
     'cloudinary',
     'django.contrib.staticfiles',
     'searchitportfolio',
@@ -110,9 +111,9 @@ if DATABASE_URL:
     )
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
 }
 
 STORAGES = {
