@@ -54,15 +54,23 @@
   }
 
   body {
-    font-family: Didot, Neue Haas Grotesk;
-    padding: 30px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400; /* Regular */
+      padding: 20px;
   }
   
   h1 {
-    margin-bottom: 10px;
-    color: black;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
   }
-  
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
   h3 {
     margin-top: 20px;
   }
