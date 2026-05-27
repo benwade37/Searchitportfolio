@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column; /* Ensure content stacks vertically */
   justify-content: space-between; /* Distribute content evenly */
-  color: blue;
+  color: black;
   }
 
 .card img {
@@ -54,7 +54,7 @@
   }
 
   body {
-    font-family: Helvetica Now, Inter;
+    font-family: Didot, Neue Haas Grotesk;
     padding: 30px;
   }
   
