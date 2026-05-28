@@ -248,4 +248,11 @@
   .h3 {display: none; /* Hide the title on small screens */
 }
 }
+
+@media (max-width:320px) {
+  .h3 {
+    display: none; /* Hide the title on small screens */
+  }
+}
+
  
