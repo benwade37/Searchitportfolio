@@ -204,7 +204,7 @@
     }
   
     .logo {
-      width: 80px;
+      width: 200px;
     }
   }
 
@@ -242,6 +242,6 @@
   }
 
   .logo {
-    width: 60px; /* Further reduce the size of the logo */
+    width: 200px; /* Further reduce the size of the logo */
   }
 }
