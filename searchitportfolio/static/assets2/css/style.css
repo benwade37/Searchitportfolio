@@ -58,7 +58,7 @@
     top: 20px; /* Distance from the top of the page */
     left: 50%; /* Start positioning from the center */
     transform: translateX(-50%); /* Center the logo horizontally */
-    text-align: center; /* Ensure the logo is centered within the container */
+    text-align: right; /* Ensure the logo is on the right */
     margin-bottom: 40px; /* Add some space below the logo */
  }
   
