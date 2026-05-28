@@ -53,6 +53,17 @@
     border-color: black;
   }
 
+  .logo-container {
+    position: absolute; /* Position it relative to the page */
+    top: 20px; /* Distance from the top of the page */
+    right: 20px; /* Distance from the right of the page */
+  }
+  
+  .logo {
+    width: 100px; /* Adjust the size of the logo */
+    height: auto; /* Maintain aspect ratio */
+  }
+
   body {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 400; /* Regular */
