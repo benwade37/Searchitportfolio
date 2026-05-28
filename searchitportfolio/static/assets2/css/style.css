@@ -55,12 +55,12 @@
 
   .logo-container {
     position: absolute; /* Position it relative to the page */
-    top: 20px; /* Distance from the top of the page */
-    right: 20px; /* Distance from the right of the page */
+    top: 40px; /* Distance from the top of the page */
+    right: 40px; /* Distance from the right of the page */
   }
   
   .logo {
-    width: 100px; /* Adjust the size of the logo */
+    width: 400px; /* Adjust the size of the logo */
     height: auto; /* Maintain aspect ratio */
   }
 
