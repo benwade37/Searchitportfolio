@@ -59,6 +59,7 @@
     left: 50%; /* Start positioning from the center */
     transform: translateX(-50%); /* Center the logo horizontally */
     text-align: center; /* Ensure the logo is centered within the container */
+    margin-bottom: 40px; /* Add some space below the logo */
  }
   
   .logo {
@@ -73,6 +74,7 @@
   }
   
   h1 {
+    margin-top: 80px; /* Add space above the heading to accommodate the logo */
     font-size: 4rem;
     font-weight: 700;
     letter-spacing: -0.04em;
