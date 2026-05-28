@@ -217,7 +217,7 @@
 
   .card img {
     height: auto; /* Allow the image to use its original height */
-    object-fit: unset; /* Remove cropping behavior */
+    object-fit: cover; /* Remove cropping behavior */
   }
 
   h1 {
