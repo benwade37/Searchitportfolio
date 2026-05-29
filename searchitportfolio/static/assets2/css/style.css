@@ -121,6 +121,20 @@
     margin-top: 30px;
 }
 
+.project-description {
+  max-width: 680px;
+  margin: 40px auto 60px;
+  font-family: Georgia, serif;
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: #111;
+  text-align: right;
+}
+
+.project-description p:first-of-type {
+  font-size: 1.45rem;
+}
+
 .project-image,
 .project-video {
     width: 90%;

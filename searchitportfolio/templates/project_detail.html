@@ -20,7 +20,9 @@
 
   <h1>{{ project.title }}</h1>
 
-  <p>{{ project.description }}</p>
+  <div class="project-description">
+    {{ project.description|linebreaks }}
+  </div>
 
   <div class="gallery">
 
