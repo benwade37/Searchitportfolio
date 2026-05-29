@@ -19,6 +19,7 @@ class ClientType(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
+    credits = models.TextField(blank=True)
 
     media_types = models.ManyToManyField(MediaType)
     client_types = models.ManyToManyField(ClientType)

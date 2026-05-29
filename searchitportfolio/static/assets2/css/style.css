@@ -135,6 +135,25 @@
   font-size: 1.45rem;
 }
 
+.project-credits {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.credits-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
 .project-image,
 .project-video {
     width: 90%;

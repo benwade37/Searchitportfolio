@@ -24,6 +24,13 @@
     {{ project.description|linebreaks }}
   </div>
 
+  {% if project.credits %}
+  <div class="project-credits">
+    <span class="credits-label">Credits:</span>
+    {{ project.credits|linebreaks }}
+  </div>
+  {% endif %}
+  
   <div class="gallery">
 
     {% for asset in project.assets.all %}
