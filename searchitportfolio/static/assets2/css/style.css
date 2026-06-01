@@ -6,6 +6,23 @@
   justify-content: space-between; /* Distribute cards evenly */
 }
 
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-bottom: 40px; /* Add some space below the button */
+}
+
+.button-link:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
 
 .card {
   flex: 1 1 calc(20% - 20px); /* Adjust width for 3 cards per row */
@@ -29,7 +46,7 @@
     object-position: center; /* Center the image within the card */
   }
 
-  .filters {
+.filters {
     margin-bottom: 20px;
   }
   
@@ -59,6 +76,7 @@
     left: 50%; /* Start positioning from the center */
     transform: translateX(-50%); /* Center the logo horizontally */
     text-align: right; /* Ensure the logo is on the right */
+    margin-top: 40px; /* Add some space above the logo */
     margin-bottom: 40px; /* Add some space below the logo */
  }
   
@@ -110,7 +128,7 @@
     transform: translateY(-4px);
   }
 
-.card-link {
+  .card-link {
     display: block;
   }
 
@@ -205,6 +223,99 @@
   background-color: #0056b3; /* Darker blue on hover */
 }
 
+.back-button2 {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 20px 0;
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-bottom: 40px; /* Add some space below the button */
+}
+
+.back-button2:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.about-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: minmax(0, 650px) 260px;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-description {
+  max-width: 650px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.about-sidebar {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.contact-box {
+  margin-bottom: 40px;
+}
+
+.contact-box a {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-decoration: none;
+}
+
+.sidebar-section {
+  margin-bottom: 32px;
+}
+
+.sidebar-section h3,
+.contact-box h3 {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.sidebar-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-section li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 850px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.profile-photo img {
+  width: 450px; /* Set a fixed width for the image */
+  height: 450px; /* Automatically adjust the height to maintain aspect ratio */
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+  display: block; /* Ensure the image behaves like a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
 /* Media query for medium screens (tablets, 768px and up) */
 @media (max-width: 1024px) {
   .card {
@@ -272,6 +383,7 @@
   .logo-container {
     top: 5px; /* Move the logo closer to the top */
     right: 5px; /* Move the logo closer to the right */
+    margin-top: 40px;
   }
 
   .logo {

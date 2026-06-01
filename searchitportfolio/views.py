@@ -21,3 +21,8 @@ def home(request):
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)
     return render(request, 'project_detail.html', {'project': project})
+
+from django.shortcuts import render
+
+def about(request):
+    return render(request, 'about.html')
