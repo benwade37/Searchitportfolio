@@ -409,16 +409,6 @@
     margin: 0 auto; /* Center the image horizontally */
   }
 
-  .logo-container {
-    top: 5px; /* Move the logo closer to the top */
-    right: 5px; /* Move the logo closer to the right */
-    margin-top: 40px;
-  }
-
-  .logo {
-    width: 200px; /* Further reduce the size of the logo */
-  }
-
 @media (max-width:320px) 
   .h3 {
     display: none; /* Hide the title on small screens */
@@ -433,14 +423,5 @@
     margin: 0 auto; /* Center the image horizontally */
   }
 
-  .logo-container {
-    top: 5px; /* Move the logo closer to the top */
-    right: 5px; /* Move the logo closer to the right */
-    margin-top: 40px;
-  }
-
-  .logo {
-    width: 200px; /* Further reduce the size of the logo */
-  }
 
  
