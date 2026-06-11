@@ -300,6 +300,15 @@
   margin-bottom: 8px;
 }
 
+.about-footer {
+  text-align: left;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #666;
+  margin-top: 40px;
+  letter-spacing: 0.05em;
+ }
+
 @media (max-width: 850px) {
   .about-content {
     grid-template-columns: 1fr;
