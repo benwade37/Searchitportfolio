@@ -61,3 +61,5 @@ class ProjectAsset(models.Model):
 
     def __str__(self):
         return f"{self.asset_type} for {self.project.title}"
+    
+    hide_from_search = models.BooleanField(default=False)
